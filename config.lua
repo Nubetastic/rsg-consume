@@ -4,40 +4,84 @@ return {
         Eat = { -- default food items
             ['bread'] = {
                 item = 'bread',
-                hunger = 25,
+                hunger = 50,
                 thirst = 0,
-                stress = 5,
+                stress = 0,
+                alcohol = -10,
                 propname = 'p_bread_14_ab_s_a',
-                poison = 15,
-                poisonRate = 0.4,
+                poison = 0,
+                poisonRate = 0,
             },
+            ['bag_candy'] = {
+                item = 'bag_candy',
+                hunger = 10,
+                thirst = -5,
+                stress = 15,
+                propname = '',
+                poison = 0,
+                poisonRate = 0,
+            },
+            ['beef_jerky'] = {
+                item = 'beef_jerky',
+                hunger = 50,
+                thirst = -10,
+                stress = 0,
+                propname = 'p_meatchunk_sm02x',
+                poison = 0,
+                poisonRate = 0,
+            },
+            ['chocolate_bar'] = {
+                item = 'chocolate_bar',
+                hunger = 10,
+                thirst = -5,
+                stress = 20,
+                propname = 's_chocolatebar01x',
+                poison = 0,
+                poisonRate = 0,
+            },  
         },
         Drink = { -- default drink items
             ['water'] = {
                 item = 'water',
                 hunger = 0,
-                thirst = 25,
-                stress = 5,
+                thirst = 40,
+                stress = 0,
                 alcohol = -5,
-                propname = 'p_bottlebeer01a'
+                propname = 'p_water01x'
             },
             ['beer'] = {
                 item = 'beer',
                 hunger = -3,
-                thirst = 0,
+                thirst = 25,
                 stress = -10,
-                alcohol = 25,
-                propname = 'p_bottlebeer01a'
+                alcohol = 20,
+                propname = 'p_bottlebeer01a',
+            },
+            ['whiskey'] = {
+                item = 'whiskey',
+                hunger = -5,
+                thirst = 20,
+                stress = -15,
+                alcohol = 35,
+                propname = 's_inv_whiskey01x',
             },
         },
         Stew = { -- default stew items
-            ['stew'] = {
-                item = 'stew',
-                hunger = 50,
+            ['beef_stew'] = {
+                item = 'beef_stew',
+                hunger = 60,
                 thirst = 25,
-                stress = 20,
+                stress = 0,
                 alcohol = -10,
                 propname = 'p_bowl04x_stew'
+            },
+            ['fish_stew'] = {
+                item = 'fish_stew',
+                hunger = 60,
+                thirst = 25,
+                stress = 0,
+                alcohol = -10,
+                propname = 'p_fishstew01x'
             },
         },
         Hotdrinks = { -- default hot drink items
@@ -54,11 +98,47 @@ return {
         Eatcanned = { -- canned food items
             ['canned_apricots'] = {
                 item = 'canned_apricots',
-                hunger = 50,
+                hunger = 40,
                 thirst = 20,
-                stress = 10,
-                alcohol = -3,
+                stress = 0,
                 propname = 's_canrigapricots01x',
+            },
+            ['canned_peaches'] = {
+                item = 'canned_peaches',
+                hunger = 40,
+                thirst = 20,
+                stress = 0,
+                propname = 's_canpeaches01x',
+            },
+            ['canned_pineapples'] = {
+                item = 'canned_pineapples',
+                hunger = 40,
+                thirst = 20,
+                stress = 0,
+                propname = 's_canpineapple01x',
+            },
+            ['canned_beans'] = {
+                item = 'canned_beans',
+                hunger = 60,
+                thirst = 0,
+                stress = 0,
+                propname = 's_canbeans01x',
+            },
+        },
+        Smoke = {
+            ['cigar'] = {
+                item = 'cigar',
+                hunger = 0,
+                thirst = 0,
+                stress = -10,
+                propname = 'p_cigar01x',
+            },
+            ['cigarette'] = {
+                item = 'cigarette',
+                hunger = 0,
+                thirst = 0,
+                stress = -20,
+                propname = 'p_cigarette_cs02x',
             },
         },
     },
@@ -76,7 +156,7 @@ return {
     AlcoholEffects = {
         -- Visual Effects Configuration
         DrunkEffect = true,                      -- Enable or disable the drunk post-fx effect
-        DrunkEffectName = "PlayerDrunk01",       -- The name of the visual effect for being drunk
+        DrunkEffectName = "PlayerDrunkSaloon1",       -- The name of the visual effect for being drunk
         PassOutEffect = "PlayerDrunk01_PassOut", -- The name of the visual effect for passing out
         WakeUpEffect = "PlayerWakeUpDrunk",      -- The name of the visual effect for waking up
         GroggyEffectName = "PlayerHealthPoorCS", -- The visual effect for the hangover/groggy state

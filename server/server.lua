@@ -30,6 +30,7 @@ registerConsumables("Drink",     'rsg-consume:client:drink')
 registerConsumables("Hotdrinks", 'rsg-consume:client:drinkcoffee')
 registerConsumables("Stew",      'rsg-consume:client:stew')
 registerConsumables("Eatcanned", 'rsg-consume:client:eatcanned')
+registerConsumables("Smoke",     'rsg-consume:client:smoke')
 
 -- =========================================================================================
 -- Server Events

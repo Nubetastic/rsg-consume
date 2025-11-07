@@ -1,4 +1,5 @@
 local config = require 'config'
+local anims = require 'client.animations'
 ---@type table
 local isBusy = false
 ---@type number
@@ -286,4 +287,21 @@ end)
 ---@param itemName string The name of the canned food item.
 RegisterNetEvent('rsg-consume:client:eatcanned', function(itemName)
     handleConsumption(itemName, "Eatcanned")
+end)
+
+RegisterNetEvent('rsg-consume:client:smoke', function(itemName)
+    if isBusy or not config.Consumables.Smoke[itemName] then return end
+    local ped = getPed()
+    local data = config.Consumables.Smoke[itemName]
+    isBusy = true
+    LocalPlayer.state:set("inv_busy", true, true)
+    SetCurrentPedWeapon(ped, `WEAPON_UNARMED`)
+    anims.playSmoke(data.propname)
+    TriggerServerEvent('rsg-consume:server:removeitem', data.item, 1)
+    if data.hunger then TriggerEvent('hud:client:UpdateHunger', LocalPlayer.state.hunger + data.hunger) end
+    if data.thirst then TriggerEvent('hud:client:UpdateThirst', LocalPlayer.state.thirst + data.thirst) end
+    if data.stress and data.stress > 0 then TriggerEvent('hud:client:RelieveStress', data.stress) end
+    TriggerEvent('rsg-consume:client:onConsume', data)
+    LocalPlayer.state:set("inv_busy", false, true)
+    isBusy = false
 end)
