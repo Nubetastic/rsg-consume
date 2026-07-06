@@ -11,7 +11,7 @@ shared_scripts {
 }
 
 client_scripts {
-    'client/animations.lua',
+	'client/animations.lua',
     'client/client.lua'
 }
 

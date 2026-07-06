@@ -289,6 +289,7 @@ RegisterNetEvent('rsg-consume:client:eatcanned', function(itemName)
     handleConsumption(itemName, "Eatcanned")
 end)
 
+
 RegisterNetEvent('rsg-consume:client:smoke', function(itemName)
     if isBusy or not config.Consumables.Smoke[itemName] then return end
     local ped = getPed()

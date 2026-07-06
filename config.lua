@@ -143,6 +143,7 @@ return {
         },
     },
 
+
     -- AlcoholSystem Configuration
     AlcoholSystem = {
         DrunkThreshold = 50,      -- Threshold to be considered drunk
