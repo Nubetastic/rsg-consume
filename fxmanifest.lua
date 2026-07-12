@@ -11,7 +11,6 @@ shared_scripts {
 }
 
 client_scripts {
-	'client/animations.lua',
     'client/client.lua'
 }
 
@@ -27,6 +26,7 @@ files {
 dependencies {
     'rsg-core',
     'ox_lib',
+    'rsg-animations',
 }
 
 lua54 'yes'

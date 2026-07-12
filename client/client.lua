@@ -1,5 +1,4 @@
 local config = require 'config'
-local anims = require 'client.animations'
 ---@type table
 local isBusy = false
 ---@type number
@@ -201,14 +200,19 @@ local function handleConsumption(itemName, type)
         end
 
     elseif type == "Stew" then
-        prop = CreateObject(`p_bowl04x_stew`, GetEntityCoords(ped), true, true, false, false, true)
-        prop2 = CreateObject(`p_spoon01x`, GetEntityCoords(ped), true, true, false, false, true)
+        local stewPropName = data.propname
+        local stewPropHash = GetHashKey(stewPropName)
+        local coords = GetEntityCoords(ped)
+        lib.requestModel(stewPropHash)
+        prop = CreateObject(stewPropHash, coords.x, coords.y, coords.z, true, true, false, false, true)
+        prop2 = CreateObject(`p_spoon01x`, coords.x, coords.y, coords.z, true, true, false, false, true)
         Citizen.InvokeNative(0x669655FFB29EF1A9, prop, 0, "Stew_Fill", 1.0)
         Citizen.InvokeNative(0xCAAF2BCCFEF37F77, prop, 20)
         Citizen.InvokeNative(0xCAAF2BCCFEF37F77, prop2, 82)
         TaskItemInteraction_2(ped, 599184882, prop, `p_bowl04x_stew_ph_l_hand`, -583731576, 1, 0, 0.0)
         TaskItemInteraction_2(ped, 599184882, prop2, `p_spoon01x_ph_r_hand`, -583731576, 1, 0, 0.0)
         Citizen.InvokeNative(0xB35370D5353995CB, ped, -583731576, 1.0)
+        SetModelAsNoLongerNeeded(stewPropHash)
         taskDuration = 5000
 
     elseif type == "Hotdrinks" then
@@ -292,12 +296,23 @@ end)
 
 RegisterNetEvent('rsg-consume:client:smoke', function(itemName)
     if isBusy or not config.Consumables.Smoke[itemName] then return end
+
     local ped = getPed()
     local data = config.Consumables.Smoke[itemName]
+    local smokeAnimations = {
+        [GetHashKey('p_cigar01x')] = 'Smoke cigar',
+        [GetHashKey('p_cigarette_cs02x')] = 'Smoke cigarette',
+    }
+    local animationName = smokeAnimations[GetHashKey(data.propname or '')]
+
     isBusy = true
     LocalPlayer.state:set("inv_busy", true, true)
     SetCurrentPedWeapon(ped, `WEAPON_UNARMED`)
-    anims.playSmoke(data.propname)
+
+    if animationName then
+        exports['rsg-animations']:PlayAnimation(animationName)
+    end
+
     TriggerServerEvent('rsg-consume:server:removeitem', data.item, 1)
     if data.hunger then TriggerEvent('hud:client:UpdateHunger', LocalPlayer.state.hunger + data.hunger) end
     if data.thirst then TriggerEvent('hud:client:UpdateThirst', LocalPlayer.state.thirst + data.thirst) end

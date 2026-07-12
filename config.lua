@@ -67,13 +67,13 @@ return {
             },
         },
         Stew = { -- default stew items
-            ['beef_stew'] = {
-                item = 'beef_stew',
+            ['stew'] = {
+                item = 'stew',
                 hunger = 60,
                 thirst = 25,
                 stress = 0,
                 alcohol = -10,
-                propname = 'p_bowl04x_stew'
+                propname = 'p_beefstew01x'
             },
             ['fish_stew'] = {
                 item = 'fish_stew',
@@ -82,6 +82,14 @@ return {
                 stress = 0,
                 alcohol = -10,
                 propname = 'p_fishstew01x'
+            },
+            ['bean_stew'] = {
+                item = 'bean_stew',
+                hunger = 60,
+                thirst = 25,
+                stress = 0,
+                alcohol = -10,
+                propname = 'p_chillicurry01x'
             },
         },
         Hotdrinks = { -- default hot drink items
