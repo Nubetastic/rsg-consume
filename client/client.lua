@@ -308,9 +308,20 @@ RegisterNetEvent('rsg-consume:client:smoke', function(itemName)
     isBusy = true
     LocalPlayer.state:set("inv_busy", true, true)
     SetCurrentPedWeapon(ped, `WEAPON_UNARMED`)
+    ClearPedTasks(ped)
+    Wait(500)
+    print("IsPedExitingScenario: " .. IsPedExitingScenario(ped,0))
+    if IsPedExitingScenario(ped,0) == 1 then
+        local loopCancel = 100
+        while IsPedExitingScenario(ped,0) == 1 and loopCancel > 0 do
+            print("LoopCount: " .. loopCancel)
+            loopCancel = loopCancel - 1
+            Wait(100)
+        end
+    end
 
     if animationName then
-        exports['rsg-animations']:PlayAnimation(animationName)
+        exports['rsg-animations']:PlayAnimation(animationName,"upper")
     end
 
     TriggerServerEvent('rsg-consume:server:removeitem', data.item, 1)
