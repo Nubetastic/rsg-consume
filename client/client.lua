@@ -310,13 +310,11 @@ RegisterNetEvent('rsg-consume:client:smoke', function(itemName)
     SetCurrentPedWeapon(ped, `WEAPON_UNARMED`)
     ClearPedTasks(ped)
     Wait(500)
-    print("IsPedExitingScenario: " .. IsPedExitingScenario(ped,0))
     if IsPedExitingScenario(ped,0) == 1 then
-        local loopCancel = 100
+        local loopCancel = 10
         while IsPedExitingScenario(ped,0) == 1 and loopCancel > 0 do
-            print("LoopCount: " .. loopCancel)
             loopCancel = loopCancel - 1
-            Wait(100)
+            Wait(1000)
         end
     end
 
