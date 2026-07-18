@@ -12,6 +12,16 @@ return {
                 poison = 0,
                 poisonRate = 0,
             },
+            ['adminbread'] = {
+                item = 'adminbread',
+                hunger = 100,
+                thirst = 100,
+                stress = 0,
+                alcohol = -100,
+                propname = 'p_bread_14_ab_s_a',
+                poison = 0,
+                poisonRate = 0,
+            },
             ['bag_candy'] = {
                 item = 'bag_candy',
                 hunger = 10,
